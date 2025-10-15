@@ -35,7 +35,11 @@ Este repositorio simula vulnerabilidades de seguridad similares a casos reales c
 ├── toyota-case/            # Simulación caso Toyota
 ├── docker-secrets/         # Secretos en Docker
 ├── kubernetes-secrets/     # Secretos en K8s
-└── terraform-secrets/      # Secretos en Terraform
+├── terraform-secrets/      # Secretos en Terraform
+├── high-severity/          # Vulnerabilidades críticas
+├── pii-risks/              # Datos PII y lenguaje no inclusivo
+├── dev-secrets/            # Secretos en rama dev
+└── qa-secrets/             # Secretos en rama qa
 ```
 
 ## Uso con Vault Radar
@@ -50,12 +54,38 @@ vault-radar scan repo ./circleci-case
 
 ## Tipos de Findings Esperados
 
-- AWS Access Keys
+### 🔴 Alta Severidad
+- AWS Root Account Credentials
+- Production Database Master Passwords
+- Production Private Keys
+- Live API Keys (Stripe, PayPal)
+- Production Encryption Keys
+
+### 📊 PII (Información Personal Identificable)
+- Números de Seguro Social (SSN)
+- Números de tarjetas de crédito con CVV
+- Direcciones físicas y números de teléfono
+- Emails personales
+- Registros médicos e información de seguros
+
+### ⚠️ Lenguaje No Inclusivo
+- Términos master/slave en código
+- Términos blacklist/whitelist
+- Lenguaje inapropiado en comentarios
+- Referencias no inclusivas en documentación
+
+### 🔧 Secretos Técnicos
+- AWS Access Keys y Secret Keys
 - GitHub Personal Access Tokens
 - Database Connection Strings
 - SSH Private Keys
-- API Keys de servicios terceros
-- Passwords hardcodeados
 - JWT Secrets
-- Slack Tokens
-- Docker Registry Credentials
+- API Keys de servicios terceros
+- Docker y Kubernetes secrets
+- Terraform variables con credenciales
+
+## Ramas del Repositorio
+
+- **main**: Vulnerabilidades de producción y casos principales
+- **dev**: Secretos de desarrollo con datos de prueba (pero reales)
+- **qa**: Configuraciones de staging que apuntan a producción
