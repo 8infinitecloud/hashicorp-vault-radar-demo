@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    # VULNERABILIDAD: Credenciales en archivo YAML
+    url: jdbc:postgresql://prod-db.toyota.com:5432/toyota_production
+    username: admin
+    password: ToyotaSpringPass2023!
+    driver-class-name: org.postgresql.Driver
+  
+  redis:
+    host: redis.toyota.com
+    port: 6379
+    password: ToyotaRedisPass123!
+  
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: toyota-github-client-id
+            # VULNERABILIDAD: Client secret expuesto
+            client-secret: toyota_github_client_secret_1234567890abcdef
+
+# VULNERABILIDAD: JWT secret hardcodeado
+jwt:
+  secret: toyota-jwt-super-secret-key-production-2023
+  expiration: 86400
+
+# API Keys para servicios externos
+external:
+  services:
+    weather:
+      api-key: toyota_weather_api_key_1234567890abcdef
+    maps:
+      api-key: AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI
+    payment:
+      stripe:
+        secret-key: sk_live_toyota_51234567890abcdefghijklmnopqrstuvwxyz
+        webhook-secret: whsec_toyota_1234567890abcdefghijklmnopqrstuvwxyz

@@ -1,0 +1,16 @@
+{
+  "name": "codecov-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest --coverage",
+    "deploy": "npm run build && npm run upload-coverage"
+  },
+  "config": {
+    "codecov_token": "12345678-1234-1234-1234-123456789012",
+    "github_token": "ghp_1234567890abcdefghijklmnopqrstuvwxyz12",
+    "sonar_token": "squ_1234567890abcdefghijklmnopqrstuvwxyz"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

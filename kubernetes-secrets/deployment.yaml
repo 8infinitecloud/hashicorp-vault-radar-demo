@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: myapp:latest
+        env:
+        # VULNERABILIDAD: Secretos hardcodeados en manifiestos K8s
+        - name: DATABASE_URL
+          value: "postgresql://admin:K8sSecretPass123@postgres.default.svc.cluster.local:5432/production"
+        - name: API_KEY
+          value: "sk_live_51234567890abcdefghijklmnopqrstuvwxyz"
+        - name: JWT_SECRET
+          value: "kubernetes-jwt-secret-key-2023"
+        - name: REDIS_PASSWORD
+          value: "RedisK8sPassword123!"
+        - name: AWS_ACCESS_KEY_ID
+          value: "AKIAIOSFODNN7EXAMPLE"
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+        ports:
+        - containerPort: 3000

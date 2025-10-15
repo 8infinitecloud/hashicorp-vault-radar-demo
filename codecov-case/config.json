@@ -1,0 +1,21 @@
+{
+  "services": {
+    "github": {
+      "token": "ghp_1234567890abcdefghijklmnopqrstuvwxyz12",
+      "webhook_secret": "github_webhook_secret_key_123456"
+    },
+    "aws": {
+      "access_key": "AKIAIOSFODNN7EXAMPLE",
+      "secret_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+      "region": "us-east-1"
+    },
+    "slack": {
+      "bot_token": "xoxb-1234567890-1234567890123-abcdefghijklmnopqrstuvwx",
+      "webhook": "https://hooks.slack.com/services/T12345678/B12345678/abcdefghijklmnopqrstuvwx"
+    },
+    "datadog": {
+      "api_key": "1234567890abcdefghijklmnopqrstuvwx",
+      "app_key": "1234567890abcdefghijklmnopqrstuvwxyz123456"
+    }
+  }
+}

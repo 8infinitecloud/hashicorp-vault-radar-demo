@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      # VULNERABILIDAD: Secretos en docker-compose
+      - DATABASE_PASSWORD=MySecretDBPassword123!
+      - API_SECRET_KEY=sk_live_51234567890abcdefghijklmnopqrstuvwxyz
+      - STRIPE_SECRET=sk_test_51234567890abcdefghijklmnopqrstuvwxyz
+      - SENDGRID_API_KEY=SG.1234567890abcdefghijklmnopqrstuvwxyz.abcdef
+      - JWT_SECRET=super-secret-jwt-key-for-production
+      - REDIS_URL=redis://:password123@redis:6379
+    
+  database:
+    image: postgres:13
+    environment:
+      # VULNERABILIDAD: Credenciales de DB expuestas
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=PostgresSecretPass2023!
+      - POSTGRES_DB=production_db
+    
+  redis:
+    image: redis:6-alpine
+    command: redis-server --requirepass RedisSecretPassword123!

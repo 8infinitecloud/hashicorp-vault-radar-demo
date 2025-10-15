@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:18.0
+    environment:
+      # VULNERABILIDAD: Secretos hardcodeados en variables de entorno
+      AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
+      AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+      GITHUB_TOKEN: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      SLACK_WEBHOOK_URL: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+      DATABASE_URL: postgresql://admin:password123@db.example.com:5432/myapp
+      JWT_SECRET: super-secret-jwt-key-that-should-not-be-here
+      STRIPE_SECRET_KEY: sk_test_51234567890abcdefghijklmnopqrstuvwxyz
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: |
+            echo "Using AWS Key: $AWS_ACCESS_KEY_ID"
+            npm test
