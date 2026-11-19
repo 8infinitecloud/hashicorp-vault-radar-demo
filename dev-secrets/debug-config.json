@@ -1,0 +1,41 @@
+{
+  "environment": "development",
+  "debug": true,
+  "logging": {
+    "level": "debug",
+    "include_pii": true,
+    "log_passwords": true
+  },
+  "database": {
+    "host": "dev-db.company.com",
+    "username": "dev_user",
+    "password": "${DB_PASSWORD}",
+    "connection_string": "postgresql://dev_user:${DB_PASSWORD}@dev-db.company.com:5432/dev_db"
+  },
+  "test_users": [
+    {
+      "name": "Test User 1",
+      "email": "test1@company.com",
+      "ssn": "123-45-6789",
+      "credit_card": "4532-1234-5678-9012",
+      "phone": "555-123-4567"
+    },
+    {
+      "name": "Test User 2", 
+      "email": "test2@company.com",
+      "ssn": "987-65-4321",
+      "credit_card": "5555-4444-3333-2222",
+      "phone": "555-987-6543"
+    }
+  ],
+  "api_keys": {
+    "stripe_test": "sk_test_dev_51234567890abcdefghijklmnopqrstuvwxyz",
+    "github_dev": "ghp_dev1234567890abcdefghijklmnopqrstuvwxyz12",
+    "slack_dev": "xoxb-dev-1234567890-1234567890123-abcdefghijklmnopqrstuvwx"
+  },
+  "comments": {
+    "note1": "This is some crazy shit for development",
+    "note2": "Remove this ghetto solution before production",
+    "note3": "The previous developer was being a total moron with this code"
+  }
+}
